@@ -84,4 +84,8 @@
             
 		</fields>
 	</config>
+
+	<updateservers>
+		<server type="extension" priority="1" name="SocialCommunity Bar">http://cdn.itprism.com/updates/socialcommunity/mod_socialcommunitybar.xml</server>
+	</updateservers>
 </extension>
