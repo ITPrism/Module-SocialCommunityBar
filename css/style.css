@@ -10,7 +10,7 @@
 
 .sc-ntfy-number {
     font-size: xx-small;
-	 border-radius: 9px;
+	border-radius: 9px;
     padding: 3px;
     position: absolute;
     bottom: 0;
@@ -39,11 +39,11 @@
 }
 
 .sc-vc-account-bar {
-	height: 34px;
 	width: 100px;
 	margin-left: 10px;
 	display: inline-block;
-	vertical-align: middle;
+	vertical-align: top;
+	padding-top: 10px;
 }
 
 .sc-vc-commodity-bar {
@@ -56,4 +56,14 @@
 
 .bgcolor-red {
 	background-color: red;
+}
+
+.sc-mod-bar-home a {
+	display: inline-block;
+	padding-top: 10px;
+}
+
+.sc-mod-bar-home img {
+	float: left;
+	margin-right: 10px;
 }

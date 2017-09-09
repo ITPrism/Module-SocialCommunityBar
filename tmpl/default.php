@@ -9,29 +9,57 @@
  
 // no direct access
 defined('_JEXEC') or die;
+
+/**
+ * @var $profile Socialcommunity\Profile\Profile
+ * @var $profileMediaFolderUrl string
+ * @var $accounts array
+ * @var $commodities array
+ * @var $account Virtualcurrency\Account\Account
+ * @var $commodity Virtualcurrency\User\Commodity\Commodity
+ * @var $moneyFormatter \Prism\Money\Formatter
+ * @var string $mediaFolderUrl
+ */
 ?>
 <div class="<?php echo $moduleclass_sfx; ?>">
-    <?php
-    if (count($accounts) > 0) {
-        /** @var $account Virtualcurrency\Account\Account */
-        foreach ($accounts as $account) {
-            $currency = $account->getCurrency();
-            $money->setCurrency($currency);
-            ?>
-            <?php echo SocialcommunityBarModuleHelper::account($account, $money, $mediaFolderUrl); ?>
-        <?php }
-    }?>
+    <div class="row">
+        <div class="col-md-4 sc-mod-bar-home">
+            <a href="<?php echo JRoute::_(SocialcommunityHelperRoute::getProfileRoute($profile->getSlug())); ?>">
+                <img src="<?php echo $profileMediaFolderUrl.'/'.$profile->getImageIcon(); ?>" class="rounded" />
+                <?php echo htmlentities($profile->getName()); ?>
+            </a>
+        </div>
+        <div class="col-md-8">
+            <div class="pull-right">
+                <?php
+                if (count($accounts) > 0) {
+                    foreach ($accounts as $account) {
+                        $amount          = $account->getAmount();
+                        $virtualCurrency = $account->getCurrency();
 
-    <?php
-    if (count($commodities) > 0) {
-        /** @var $commodity Virtualcurrency\User\Commodity */
-        foreach ($commodities as $commodity) { ?>
-            <?php echo SocialcommunityBarModuleHelper::commodity($commodity, $mediaFolderUrl); ?>
-    <?php }
-    }?>
+                        $currency  = new Prism\Money\Currency;
+                        $currency->bind($virtualCurrency->getProperties());
 
-    <a href="javascript: void(0);" class="sc-ntfy" id="js-sc-ntfy" role="button">
-        <span id="js-sc-ntfy-number" class="badge bgcolor-red sc-ntfy-number" style="display: none;">0</span>
-        <span id="js-sc-ntfy-content" class="sc-ntfy-content"></span>
-    </a>
+                        $money = new Prism\Money\Money($amount, $currency);
+
+                        $amount = $moneyFormatter->format($money);
+
+                        echo SocialcommunityBarModuleHelper::account($amount, $virtualCurrency, $mediaFolderUrl);
+                    }
+                }?>
+
+                <?php
+                if (count($commodities) > 0) {
+                    foreach ($commodities as $commodity) {
+                        echo SocialcommunityBarModuleHelper::commodity($commodity, $mediaFolderUrl);
+                    }
+                }?>
+
+                <a href="javascript: void(0);" class="sc-ntfy" id="js-sc-ntfy" role="button">
+                    <span id="js-sc-ntfy-number" class="badge bgcolor-red sc-ntfy-number" style="display: none;">0</span>
+                    <span id="js-sc-ntfy-content" class="sc-ntfy-content"></span>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>

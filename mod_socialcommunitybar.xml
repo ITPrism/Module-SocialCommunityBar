@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="module" version="3.6" client="site" method="upgrade">
+<extension type="module" version="3.7" client="site" method="upgrade">
 	<name>MOD_SOCIALCOMMUNITYBAR</name>
 	<author>Todor Iliev</author>
-	<copyright>Copyright (C) 2016 Todor Iliev ( ITPrism.com )</copyright>
+	<copyright>Copyright (C) 2017 Todor Iliev ( ITPrism.com )</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html</license>
 	<authorEmail>todor@itprism.com</authorEmail>
 	<authorUrl>http://itprism.com</authorUrl>
-	<version>1.1</version>
-	<creationDate>02 October, 2016</creationDate>
+	<version>1.2</version>
+	<creationDate>08 September, 2017</creationDate>
 	<description><![CDATA[
     <p>SocialCommunity Bar is a module that displays information about notifications, activities, etc. This is a module that provides feedback to users.</p>
     <p><a href="http://itprism.com/" target="_blank">Subscribe for the newsletter</a> to receive <strong>gifts</strong>, <strong>discount codes</strong>, information about <strong>updates</strong> and information about <strong>new ITPrism extensions</strong>.</p>
@@ -65,10 +65,8 @@
                     default="1"
                     label="COM_MODULES_FIELD_CACHING_LABEL"
                     description="COM_MODULES_FIELD_CACHING_DESC">
-                    <option
-                        value="1">JGLOBAL_USE_GLOBAL</option>
-                    <option
-                        value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+                    <option value="1">JGLOBAL_USE_GLOBAL</option>
+                    <option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
                 </field>
                 <field
                     name="cache_time"

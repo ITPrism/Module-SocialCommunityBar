@@ -3,7 +3,7 @@
 	"use strict";
 	
     // Create the defaults once
-    var pluginName = "SocialCommunityBar",
+    let pluginName = "SocialCommunityBar",
         defaults = {
             resultsLimit: 5
         },
@@ -29,13 +29,13 @@
 
         init: function() {
         	
-        	var self = this;
+        	let self = this;
             
         	$(this.element).on("click", function(event) {
         		event.preventDefault();
         		
-        		var timestamp     = new Date().getTime();
-        		var resultsLimit  = parseInt(self.options.resultsLimit);
+        		let timestamp     = new Date().getTime();
+        		let resultsLimit  = parseInt(self.options.resultsLimit);
         		
         		$(self._contentContainer).unbind("click");
         		
@@ -67,7 +67,7 @@
 
         displayNumber: function(element, options) {
         	
-        	var self = this;
+        	let self = this;
         	
         	$.ajax({
         		type: "GET",
@@ -75,11 +75,11 @@
         		dataType: "text json"
         	}).done(function(response){
         		
-        		var results = parseInt(response.data.results);
+        		let results = parseInt(response.data.results);
         		
         		if(results > 0) {
         			$(self._numberContainer).text(results).show();
-        			var title = $(document).attr("title");
+        			let title = $(document).attr("title");
         			
         			$(document).attr("title", "("+ results + ") "+ title) ;
         		}
@@ -98,4 +98,11 @@
         });
     };
 
-})( jQuery, window, document );
+})(jQuery, window, document);
+
+jQuery(document).ready(function() {
+    let options = Joomla.getOptions('mod_socialcommunitybar');
+    jQuery("#js-sc-ntfy").SocialCommunityBar({
+        resultsLimit: options.limit
+    });
+});
